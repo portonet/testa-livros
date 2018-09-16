@@ -82,10 +82,10 @@ public class PesquisarLivrosTest {
         System.out.println(textoAutorCult);
 
         assertEquals(textoAutor2,textoAutorSaraiva);
-        //assertEquals( textoAutor2,textoAutorCult);
+        assertEquals( textoAutor2,textoAutorCult);
         navegador1.quit();
         navegador2.quit();
-        //navegador3.quit();
+        navegador3.quit();
 
 
     }
