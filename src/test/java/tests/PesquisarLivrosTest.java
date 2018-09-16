@@ -47,8 +47,8 @@ public class PesquisarLivrosTest {
         System.out.println(textoAutor2);
         System.out.println(textoColuna1);
         System.out.println(textoColuna2);
-        assertEquals("ISBN", textoColuna1);
-        assertEquals("Autor(a)", textoAutor1);
+        assertEquals("ISBN",textoColuna1);
+        assertEquals("Autor(a)",textoAutor1);
 
         //Depois disso, o teste deverá entrar em mais duas lojas (ex: americanas.com.br, amazon.com.br, livrariacultura.com.br),
         ChromeDriver navegador2 = new ChromeDriver();
@@ -66,10 +66,21 @@ public class PesquisarLivrosTest {
         System.out.println(textoAutorSaraiva);
 
         ChromeDriver navegador3 = new ChromeDriver();
-        navegador3.get("http://www.livrariacultura.com.br/");
+        navegador3.get("https://www.livrariacultura.com.br");
         navegador3.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         navegador3.findElementByName("q").sendKeys(textoColuna2);
         navegador3.findElementByName("q").submit();
+        navegador3.findElementByPartialLinkText("type=\"search\"").click();
+
+        String AutorCult1 = "//li[@ul=\"Autor:\"]";
+        By autorLinhaCult1 = By.xpath(AutorCult1);
+        WebElement autorElementoCult1 = navegador1.findElement(autorLinhaCult1);
+        String textoAutorCult1 = autorElementoCult1.getText();
+
+        String AutorCult2 = "//li[@a href]";
+        By autorLinhaCult2 = By.xpath(AutorCult2);
+        WebElement autorElementoCult2 = navegador1.findElement(autorLinhaCult2);
+        String textoAutorCult2 = autorElementoCult2.getText();
 
         String LivrCult = "type=\"search\"";
         By detalhaAutor = By.xpath(LivrCult);
@@ -86,7 +97,5 @@ public class PesquisarLivrosTest {
         navegador1.quit();
         navegador2.quit();
         navegador3.quit();
-
-
     }
 }
